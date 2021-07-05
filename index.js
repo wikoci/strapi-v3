@@ -31,7 +31,7 @@ class Strapi {
     this.user = this.jwt ? JSON.parse(this.ls.get("user")) : null;
     this.debug = config.debug;
 
-    this.graphQLClient = new GraphQLClient(endpoint, {
+    this.graphQLClient = new GraphQLClient(this.baseURLgraphql, {
       headers: { ...this.authorization() },
     });
     return this._init();
@@ -327,8 +327,6 @@ class Strapi {
       }
     });
   }
-
-
 }
 
 export default Strapi;
