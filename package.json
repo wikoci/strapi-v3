@@ -1,0 +1,19 @@
+{
+  "name": "strapi-js-wikoci",
+  "version": "1.0.9",
+  "description": "Strapi Sdk ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wikoci",
+  "license": "MIT",
+  "dependencies": {
+    "consola": "^2.15.3",
+    "graphql": "^15.5.1",
+    "graphql-request": "^3.4.0",
+    "js-cookie": "^2.2.1",
+    "node-fetch": "^2.6.1",
+    "qs": "^6.10.0"
+  }
+}
