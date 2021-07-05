@@ -32,7 +32,7 @@ class Strapi {
     this.debug = config.debug;
 
     this.graphQLClient = new GraphQLClient(this.baseURLgraphql, {
-      headers: { ...this.authorization() },
+      headers: { ...this._authorization() },
     });
     return this._init();
   }

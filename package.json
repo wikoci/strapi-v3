@@ -1,6 +1,6 @@
 {
   "name": "strapi-js-wikoci",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Strapi SDK V3",
   "main": "index.js",
    "repository": {
