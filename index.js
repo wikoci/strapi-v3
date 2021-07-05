@@ -328,25 +328,7 @@ class Strapi {
     });
   }
 
-  async graphql(query, variables) {
-    var query = gql`
-      ${query}
-    `;
 
-    var response = await this.graphQLClient
-      .request(query, variables)
-      .then((e) => e)
-      .catch((err) => ({
-        error: true,
-        message: err,
-      }));
-
-    if (response?.error) {
-      reject(response.message);
-    } else {
-      resolve(response);
-    }
-  }
 }
 
 export default Strapi;

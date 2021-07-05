@@ -1,8 +1,12 @@
 {
   "name": "strapi-js-wikoci",
-  "version": "1.0.9",
-  "description": "Strapi Sdk ",
+  "version": "2.0.0",
+  "description": "Strapi SDK V3",
   "main": "index.js",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/wikoci/strapi-v3.git",
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
