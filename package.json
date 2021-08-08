@@ -1,8 +1,8 @@
 {
   "name": "strapi-js-wikoci",
-  "version": "2.0.8",
+  "version": "3.0.0",
   "description": "Strapi SDK V3",
-  "main": "index.js",
+  "main": "utils.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/wikoci/strapi-v3.git"
