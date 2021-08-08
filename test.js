@@ -1,4 +1,4 @@
-const Strapi = require("./index");
+const Strapi = require("./server");
 
 const strapi = new Strapi({
   baseURL: "http://127.0.0.1:1337",
