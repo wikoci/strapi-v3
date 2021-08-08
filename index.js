@@ -1,6 +1,10 @@
 if (typeof window == "undefined") {
-  require = require("esm")(module /*, options*/);
+  
+    try {
+    require = require("esm")(module /*, options*/);
   module.exports = require("./utils.js").default;
+} catch()
+
 } else {
   require("./utils").default;
 }
