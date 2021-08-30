@@ -1,6 +1,6 @@
 {
   "name": "strapi-js-wikoci",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Strapi SDK V3",
   "main": "utils.js",
   "repository": {
@@ -22,7 +22,8 @@
     "graphql-request": "^3.4.0",
     "js-cookie": "^2.2.1",
     "node-fetch": "^2.6.1",
-    "qs": "^6.10.0"
+    "qs": "^6.10.0",
+    "ufo": "^0.7.9"
   },
   "devDependencies": {
     "esm": "^3.2.25",

@@ -2,6 +2,7 @@ import qs from "qs";
 import Cookies from "js-cookie";
 import consola from "consola";
 import { request, gql, GraphQLClient } from "graphql-request";
+import { cleanDoubleSlashes, normalizeURL } from "ufo";
 try {
   if (!fetch) {
     const fetch = require("node-fetch");
@@ -11,13 +12,14 @@ try {
 class Strapi {
   constructor(
     config = {
-      baseURLgraphql: "",
-      baseURL: "http://127.0.0.1:1337",
-      credit: { identifier: "", password: "" },
-      debug: true,
+      baseURLgraphql: "", // GraphQL Base URL
+      baseURL: "http://127.0.0.1:1337", // Strapi EndPoint URL
+      credit: { identifier: "", password: "" }, // Identifier information
+      debug: true, // Debug console
     }
   ) {
     if (config.baseURL !== "") {
+      config.baseURL = normalizeURL(cleanDoubleSlashes(config.baseURL));
       if (config.baseURL.slice(-1) !== "/") {
         config.baseURL = config.baseURL + "/";
       }
@@ -48,6 +50,16 @@ class Strapi {
     };
 
     return this.jwt ? requestWithToken : null;
+  }
+
+  async setToken(token) {
+    this.ls.set("jwt", token);
+    this.jwt = token;
+  }
+
+  async clearToken() {
+    this.ls.remove("jwt");
+    this.jwt = null;
   }
 
   async logout() {
