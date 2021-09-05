@@ -30,7 +30,8 @@ class Strapi {
     this.jwt = this.ls.get("jwt") || null;
     this.baseURL = config.baseURL;
     this.baseURLgraphql = config.baseURLgraphql;
-    this.user = this.jwt ? JSON.parse(this.ls.get("user")) || null : null;
+    this.user =
+      this.jwt && this.ls.get("user") ? JSON.parse(this.ls.get("user")) : null;
     this.debug = config.debug;
 
     return this._init();
