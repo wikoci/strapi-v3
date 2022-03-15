@@ -1,10 +1,12 @@
 import qs from "qs";
 import Cookies from "js-cookie";
+import uniqid from "uniqid";
 import consola from "consola";
 import { request, gql, GraphQLClient } from "graphql-request";
 import { cleanDoubleSlashes, normalizeURL } from "ufo";
 try {
   if (!fetch) {
+    console.log("Is running on back-end")
     const fetch = require("node-fetch");
   }
 } catch (err) {}
@@ -12,6 +14,7 @@ try {
 class Strapi {
   constructor(
     config = {
+      key:"key",
       baseURLgraphql: "", // GraphQL Base URL
       baseURL: "http://127.0.0.1:1337", // Strapi EndPoint URL
       credit: { identifier: "", password: "" }, // Identifier information
@@ -25,9 +28,10 @@ class Strapi {
       }
     }
 
+    this.key = uniqid(config.key+'-')
     this.ls = Cookies;
     this.credit = config.credit;
-    this.jwt = this.ls.get("jwt") || null;
+    this.jwt = this.ls.get(this.key) || null;
     this.baseURL = config.baseURL;
     this.baseURLgraphql = config.baseURLgraphql;
     this.user =
@@ -54,12 +58,12 @@ class Strapi {
   }
 
   async setToken(token) {
-    this.ls.set("jwt", token);
+    this.ls.set(this.key, token);
     this.jwt = token;
   }
 
   async clearToken() {
-    this.ls.remove("jwt");
+    this.ls.remove(this.key);
     this.jwt = null;
   }
 
@@ -67,7 +71,7 @@ class Strapi {
     this.jwt = null;
     this.user = null;
     this.ls.remove("user");
-    this.ls.remove("jwt");
+    this.ls.remove(this.key);
   }
 
   async login(params = { identifier: null, password: null }) {
