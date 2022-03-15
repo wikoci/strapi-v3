@@ -28,7 +28,7 @@ class Strapi {
       }
     }
 
-    this.key = uniqid(config.key+'-')
+    this.key = config.key
     this.ls = Cookies;
     this.credit = config.credit;
     this.jwt = this.ls.get(this.key) || null;
