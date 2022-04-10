@@ -346,6 +346,8 @@ class Strapi {
 
     async aggregate(model = "", pipeline = []) {
 
+
+
         return new Promise(async(resolve, reject) => {
             try {
                 var response = await fetch(
@@ -354,6 +356,10 @@ class Strapi {
                         headers: {
                             ...this._authorization(),
                         },
+                        body: JSON.stringify({
+                            model: model,
+                            pipeline: pipeline
+                        })
                     }
                 );
 
