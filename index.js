@@ -351,7 +351,7 @@ class Strapi {
         return new Promise(async(resolve, reject) => {
             try {
                 var response = await fetch(
-                    cleanDoubleSlashes(this.baseURL + "/aggregates"), {
+                    cleanDoubleSlashes(this.baseURL + "/aggregates/exec"), {
                         method: "POST",
                         headers: {
                             ...this._authorization(),
