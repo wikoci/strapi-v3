@@ -1,33 +1,33 @@
 {
-  "name": "strapi-js-wikoci",
-  "version": "4.0.0",
-  "description": "Strapi SDK V3",
-  "main": "utils.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/wikoci/strapi-v3.git"
-  },
-  "bugs": {
-    "url": "https://github.com/wikoci/strapi-v3/issues",
-    "email": "dev@wikoci.com"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "wikoci",
-  "license": "MIT",
-  "dependencies": {
-    "consola": "^2.15.3",
-    "graphql": "^16.0.1",
-    "graphql-request": "^3.6.1",
-    "js-cookie": "^3.0.1",
-    "node-fetch": "^2.6.1",
-    "qs": "^6.10.1",
-    "ufo": "^0.7.9",
-    "uniqid": "^5.4.0"
-  },
-  "devDependencies": {
-    "esm": "^3.2.25",
-    "nodemon": "^2.0.12"
-  }
+    "name": "strapi-js-wikoci",
+    "version": "4.0.5",
+    "description": "Strapi SDK ",
+    "main": "utils.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wikoci/strapi-v3.git"
+    },
+    "bugs": {
+        "url": "https://github.com/wikoci/strapi-v3/issues",
+        "email": "dev@wikoci.com"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "wikoci",
+    "license": "MIT",
+    "dependencies": {
+        "consola": "^2.15.3",
+        "graphql": "^16.0.1",
+        "graphql-request": "^3.6.1",
+        "js-cookie": "^3.0.1",
+        "node-fetch": "^2.6.1",
+        "qs": "^6.10.1",
+        "ufo": "^0.7.11",
+        "uniqid": "^5.4.0"
+    },
+    "devDependencies": {
+        "esm": "^3.2.25",
+        "nodemon": "^2.0.12"
+    }
 }
