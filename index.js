@@ -354,12 +354,13 @@ class Strapi {
                     cleanDoubleSlashes(this.baseURL + "/aggregates/exec"), {
                         method: "POST",
                         headers: {
+                            "content-type": "application/json",
                             ...this._authorization(),
                         },
                         body: JSON.stringify({
                             model: model,
-                            pipeline: pipeline
-                        })
+                            pipeline: pipeline,
+                        }),
                     }
                 );
 
