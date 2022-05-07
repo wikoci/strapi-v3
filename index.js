@@ -466,12 +466,101 @@ class Iota {
       this.jwt && this.ls.get("user") ? JSON.parse(this.ls.get("user")) : null;
     this.debug = config.debug;
 
-    
-
     return this._init();
   }
 
- 
+  async _aggregate(model = "", pipeline = []) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var response = await fetch(
+          cleanDoubleSlashes(this.baseURL + "/drivers/_aggregate"),
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              ...this._authorization(),
+            },
+            body: JSON.stringify({
+              model: model,
+              pipeline: pipeline,
+            }),
+          }
+        );
+
+        var details = (await response.json()) || (await response.text());
+        if (!response.ok) {
+          return reject(details || null);
+        }
+        this.debug ? consola.success(details) : "";
+        resolve(details);
+      } catch (err) {
+        this.debug ? consola.error(err) : "";
+        reject(err);
+      }
+    });
+  }
+
+  async _insert(model = "", pipeline = null) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var response = await fetch(
+          cleanDoubleSlashes(this.baseURL + "/drivers/_insert"),
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              ...this._authorization(),
+            },
+            body: JSON.stringify({
+              model: model,
+              pipeline: pipeline,
+            }),
+          }
+        );
+
+        var details = (await response.json()) || (await response.text());
+        if (!response.ok) {
+          return reject(details || null);
+        }
+        this.debug ? consola.success(details) : "";
+        resolve(details);
+      } catch (err) {
+        this.debug ? consola.error(err) : "";
+        reject(err);
+      }
+    });
+  }
+
+  async _find(model = "", pipeline = null) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var response = await fetch(
+          cleanDoubleSlashes(this.baseURL + "/drivers/_find"),
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              ...this._authorization(),
+            },
+            body: JSON.stringify({
+              model: model,
+              pipeline: pipeline,
+            }),
+          }
+        );
+
+        var details = (await response.json()) || (await response.text());
+        if (!response.ok) {
+          return reject(details || null);
+        }
+        this.debug ? consola.success(details) : "";
+        resolve(details);
+      } catch (err) {
+        this.debug ? consola.error(err) : "";
+        reject(err);
+      }
+    });
+  }
 
   async aggregate(model = "", pipeline = []) {
     return new Promise(async (resolve, reject) => {
@@ -506,9 +595,7 @@ class Iota {
 
   _init() {
     // Initialisation status
-    return this.debug
-      ? consola.success("Iota running , v-5.0.4" )
-      : "";
+    return this.debug ? consola.success(" Iota running ¬  v-5.0.4") : "";
   }
 
   _authorization() {
