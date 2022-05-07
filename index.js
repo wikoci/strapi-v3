@@ -36,9 +36,52 @@ class Strapi {
         this.baseURLgraphql = config.baseURLgraphql;
         this.user =
             this.jwt && this.ls.get("user") ? JSON.parse(this.ls.get("user")) : null;
-        this.debug = config.debug;
+        this.debug = config.debug;  
 
+        //iota
+        this.iota.aggregate =  this._aggregate
+        this.iota.updateMany = this._updateMany
+        
         return this._init();
+
+    }
+
+
+    async _updateMany() {
+        
+    }
+
+    async _aggregate(model="",pipeline=[]) {
+
+
+        return new Promise(async (resolve, reject) => {
+          try {
+            var response = await fetch(
+              cleanDoubleSlashes(this.baseURL + "/aggregates/exec"),
+              {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                  ...this._authorization(),
+                },
+                body: JSON.stringify({
+                  model: model,
+                  pipeline: pipeline,
+                }),
+              }
+            );
+
+            var details = (await response.json()) || (await response.text());
+            if (!response.ok) {
+              return reject(details || null);
+            }
+            this.debug ? consola.success(details) : "";
+            resolve(details);
+          } catch (err) {
+            this.debug ? consola.error(err) : "";
+            reject(err);
+          }
+        });
     }
 
     _init() {
@@ -344,9 +387,9 @@ class Strapi {
         });
     }
 
+
+
     async aggregate(model = "", pipeline = []) {
-
-
 
         return new Promise(async(resolve, reject) => {
             try {
