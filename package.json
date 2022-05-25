@@ -1,6 +1,6 @@
 {
     "name": "strapi-js-wikoci",
-    "version": "5.0.5",
+    "version": "5.0.6",
     "description": "Iota SDK",
     "main": "utils.js",
     "repository": {

@@ -49,38 +49,7 @@ class Strapi {
         
     }
 
-    async _aggregate(model="",pipeline=[]) {
-
-
-        return new Promise(async (resolve, reject) => {
-          try {
-            var response = await fetch(
-              cleanDoubleSlashes(this.baseURL + "/aggregates/exec"),
-              {
-                method: "POST",
-                headers: {
-                  "content-type": "application/json",
-                  ...this._authorization(),
-                },
-                body: JSON.stringify({
-                  model: model,
-                  pipeline: pipeline,
-                }),
-              }
-            );
-
-            var details = (await response.json()) || (await response.text());
-            if (!response.ok) {
-              return reject(details || null);
-            }
-            this.debug ? consola.success(details) : "";
-            resolve(details);
-          } catch (err) {
-            this.debug ? consola.error(err) : "";
-            reject(err);
-          }
-        });
-    }
+  
 
     _init() {
         // Initialisation status
@@ -285,6 +254,7 @@ class Strapi {
                         body: JSON.stringify(params),
                     });
                 } else {
+                   !params.has("data") ? params.append("data", {}) : null;
                     var response = await fetch(this.baseURL + entry, {
                         method: "POST",
                         headers: {
@@ -334,6 +304,7 @@ class Strapi {
                         body: JSON.stringify(params),
                     });
                 } else {
+                   !params.has("data") ? params.append("data", {}) : null;
                     var response = await fetch(this.baseURL + entry, {
                         method: "PUT",
                         headers: {
@@ -536,6 +507,68 @@ class Iota {
       try {
         var response = await fetch(
           cleanDoubleSlashes(this.baseURL + "/drivers/_find"),
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              ...this._authorization(),
+            },
+            body: JSON.stringify({
+              model: model,
+              pipeline: pipeline,
+            }),
+          }
+        );
+
+        var details = (await response.json()) || (await response.text());
+        if (!response.ok) {
+          return reject(details || null);
+        }
+        this.debug ? consola.success(details) : "";
+        resolve(details);
+      } catch (err) {
+        this.debug ? consola.error(err) : "";
+        reject(err);
+      }
+    });
+  }
+
+  async _findOne(model = "", pipeline = null) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var response = await fetch(
+          cleanDoubleSlashes(this.baseURL + "/drivers/_findOne"),
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              ...this._authorization(),
+            },
+            body: JSON.stringify({
+              model: model,
+              pipeline: pipeline,
+            }),
+          }
+        );
+
+        var details = (await response.json()) || (await response.text());
+        if (!response.ok) {
+          return reject(details || null);
+        }
+        this.debug ? consola.success(details) : "";
+        resolve(details);
+      } catch (err) {
+        this.debug ? consola.error(err) : "";
+        reject(err);
+      }
+    });
+  }
+
+  async _update(model = "", pipeline = null) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        var response = await fetch(
+          cleanDoubleSlashes(this.baseURL + "/drivers/_update"),
           {
             method: "POST",
             headers: {
@@ -794,6 +827,7 @@ class Iota {
             body: JSON.stringify(params),
           });
         } else {
+         !params.has('data')? params.append('data',{}):null
           var response = await fetch(this.baseURL + entry, {
             method: "POST",
             headers: {
@@ -843,6 +877,7 @@ class Iota {
             body: JSON.stringify(params),
           });
         } else {
+           !params.has("data") ? params.append("data", {}) : null;
           var response = await fetch(this.baseURL + entry, {
             method: "PUT",
             headers: {
