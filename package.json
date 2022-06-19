@@ -1,8 +1,8 @@
 {
     "name": "strapi-js-wikoci",
-    "version": "5.0.6",
+    "version": "6.1.2",
     "description": "Iota SDK",
-    "main": "utils.js",
+    "main": "index.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/wikoci/strapi-v3.git"
@@ -17,14 +17,20 @@
     "author": "wikoci",
     "license": "MIT",
     "dependencies": {
+        "clean-deep": "^3.4.0",
         "consola": "^2.15.3",
+        "generate-unique-id": "^2.0.1",
         "graphql": "^16.0.1",
         "graphql-request": "^3.6.1",
         "js-cookie": "^3.0.1",
+        "lodash": "^4.17.21",
+        "moment": "^2.29.3",
         "node-fetch": "^2.6.1",
+        "numeral": "^2.0.6",
         "qs": "^6.10.1",
         "ufo": "^0.7.11",
-        "uniqid": "^5.4.0"
+        "uniqid": "^5.4.0",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "esm": "^3.2.25",
