@@ -1,4 +1,4 @@
-const version="6.1.1"
+const version="6.1.3"
 import qs from "qs";
 import Cookies from "js-cookie";
 import uniqid from "uniqid";
@@ -477,12 +477,22 @@ class Iota {
     });
   }
 
-  async create(entry = "", params = {}, config = { withMedia: false ,media:null }) {
+  async create(entry = "", params = {}, config = { withMedia: false ,media:null,medias:[] ,mediasField:null }) {
     // create Entry
     // create entry
     entry = entry + "/";
 
     return new Promise(async (resolve, reject) => {
+
+      if (config.withMedia && config.medias) {
+        var formdata = new FormData();
+        for await (let media of medias) {
+          formdata.append(`files.${config.mediasField}`,media.file,media.file.name)
+        }
+        config.media = formdata
+      }
+
+
       try {
         if (this.debug)
           config.withMedia ? consola.info("Send width media") : "";
@@ -529,7 +539,7 @@ class Iota {
     entry = "",
     id = "",
     params = {},
-    config = { withMedia: false ,media:null }
+    config = { withMedia: false ,media:null , medias:[],mediasField:null }
   ) {
     // update entry
 
@@ -537,6 +547,18 @@ class Iota {
 
     return new Promise(async (resolve, reject) => {
       try {
+
+        if (config.withMedia && config.medias) {
+          var formdata = new FormData();
+          for await (let media of medias) {
+            formdata.append(
+              `files.${config.mediasField}`,
+              media.file,
+              media.file.name
+            );
+          }
+          config.media = formdata;
+        }
 
         if (this.debug)
           config.withMedia ? consola.info("Send width media") : "";
